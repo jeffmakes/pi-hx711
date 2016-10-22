@@ -1,14 +1,5 @@
 import RPi.GPIO as GPIO
 import time
-import numpy
-
-
-def createBoolList(size=8):
-    ret = []
-    for i in range(8):
-        ret.append(False)
-    return ret
-
 
 class HX711:
     def __init__(self, dout, pd_sck, gain=128):
@@ -24,8 +15,8 @@ class HX711:
         self.SCALE = 1
         self.lastVal = 0
 
-        #GPIO.output(self.PD_SCK, True)
-        #GPIO.output(self.PD_SCK, False)
+        GPIO.output(self.PD_SCK, True)
+        GPIO.output(self.PD_SCK, False)
 
         self.set_gain(gain);
 
@@ -107,11 +98,7 @@ hx.set_scale(1)
 #hx.tare()
 
 while True:
-    try:        
-        #273371
-        #273463
-        #273480
-        #273670
+    try:
         #val = hx.get_units(3)
         val = hx.read();
         time.sleep(1)
